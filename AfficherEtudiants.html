@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<h1>Liste des étudiants</h1>
+<div id="demo"></div>
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://localhost/Compte_Rendu/listeetudiantsExp3.php";
+xmlhttp.onreadystatechange=function() {
+if (this.readyState == 4 && this.status == 200) {
+    myFunction(this.responseText);
+    alert(this.responseText);}
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+function myFunction(response) {
+    var obj = JSON.parse(response);
+    var arr=obj.etudiants;
+    var i;
+    var out = "<table>";
+    for(i = 0; i < arr.length; i++) {
+    out += "<tr><td>" +arr[i].cin +"</td><td>" +arr[i].nom + "</td><td>" +arr[i].prenom +"</td><td>" +arr[i].email + "</td><td>" +arr[i].adresse +"</td><td>" +arr[i].classe +"</td></tr>";}
+    out += "</table>";
+    document.getElementById("demo").innerHTML = out;
+}
+</script>
+</body>
+</html>

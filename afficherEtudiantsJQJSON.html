@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("#btn").click(function(){
+$.get("http://localhost/Compte_Rendu/listeetudiantsExp3.php",function(data,status){myFunction(data);},"json");
+});
+});
+function myFunction(response) {
+    var arr=response.etudiants;
+    var i;
+    var out = "<table>";
+    for(i = 0; i < arr.length; i++) {
+    out += "<tr><td>" +
+    arr[i].cin +
+    "</td><td>" +
+    arr[i].nom +
+    "</td><td>" +
+    arr[i].prenom +
+    "</td><td>" +
+    arr[i].email +
+    "</td><td>" +
+    arr[i].adresse +
+    "</td><td>" +
+    arr[i].classe +
+    "</td></tr>";
+    }
+    out += "</table>";
+    document.getElementById("demo").innerHTML = out;
+}
+</script>
+</head>
+
+<body>
+<h1>Liste des étudiants</h1>
+<div id="demo"></div>
+<br>
+<input id="btn" type="button" value="Cliquer ici!">
+</body>
+</html>
